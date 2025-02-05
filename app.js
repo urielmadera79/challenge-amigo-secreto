@@ -14,11 +14,25 @@ let amigoSecreto = "";
 let inputNombre = document.getElementById("amigo");
 let botonAgregar = document.getElementById("agregar");
 let botonSortear = document.getElementById("sortear");
-let listaNombres = document.getElementById("lista-nombres");
+let listaNombres = document.getElementById("listaAmigos");
 let amigo = document.getElementById("amigo-secreto");
 
-botonAgregar.addEventListener("click", () => {
+function agregarAmigo() {
   let nombre = inputNombre.value;
+  if (nombre === "" || !validarNombre(nombre)) {
+    alert("Por favor, inserte un nombre.");
+    return;
+  }
+  nombres.push(nombre);
+  let item = document.createElement("li");
+  item.textContent = nombre;
+  listaNombres.appendChild(item);
+  inputNombre.value = "";
+/*   console.log(nombres); */
+
+/*
+ let nombre = inputNombre.value;
+  console.log(nombre);
   if (nombre === "" || !validarNombre(nombre)) {
     alert("Nombre no válido");
   } else {
@@ -31,4 +45,18 @@ botonAgregar.addEventListener("click", () => {
     });
     inputNombre.value = "";
   }
+*/
+} 
+
+
+
+function validarNombre(nombre) {
+    return /^[a-zA-Z]*$/.test(nombre);
+}
+
+function sortearAmigo() {
+  let indice = Math.floor(Math.random() * nombres.length);
+  amigoSecreto = nombres[indice];
+  alert("El amigo secreto es: " + amigoSecreto);
+  //amigo.textContent = amigoSecreto;
 }
