@@ -29,17 +29,27 @@ function agregarAmigo() {
     inputNombre.value = "";
     return;
   }
-  nombres.push(nombre);
-  console.log(nombres.length);
+  nombres.push(nombre); 
+  // Actualizar la lista de nombres en la interfaz
+  agregarNombreALista();
   
-  
-  let item = document.createElement("li");
-  item.textContent = nombre;
-  listaNombres.appendChild(item);
   inputNombre.value = "";
 
-} 
 
+} 
+function agregarNombreALista() {
+  const nameList = document.getElementById('listaAmigos');
+
+  // Vaciar la lista
+  nameList.innerHTML = '';
+
+  // Recorrer la lista de nombres y agregar cada uno como un elemento <li>
+  for (const name of nombres) {
+      const li = document.createElement('li');
+      li.textContent = name;
+      nameList.appendChild(li);
+  }
+}
 
 function sortearAmigo() {
   let indice = Math.floor(Math.random() * nombres.length);
