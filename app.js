@@ -15,11 +15,11 @@ let inputNombre = document.getElementById("amigo");
 let botonAgregar = document.getElementById("agregar");
 let botonSortear = document.getElementById("sortear");
 let listaNombres = document.getElementById("listaAmigos");
-let amigo = document.getElementById("amigo-secreto");
+let amigo = document.getElementById("resultado");
 
 function agregarAmigo() {
   let nombre = inputNombre.value;
-  if (nombre === "" || !validarNombre(nombre)) {
+  if (nombre === "") {
     alert("Por favor, inserte un nombre.");
     return;
   }
@@ -30,33 +30,13 @@ function agregarAmigo() {
   inputNombre.value = "";
 /*   console.log(nombres); */
 
-/*
- let nombre = inputNombre.value;
-  console.log(nombre);
-  if (nombre === "" || !validarNombre(nombre)) {
-    alert("Nombre no válido");
-  } else {
-    nombres.push(nombre);
-    listaNombres.innerHTML = "";
-    nombres.forEach((nombre) => {
-      let li = document.createElement("li");
-      li.textContent = nombre;
-      listaNombres.appendChild(li);
-    });
-    inputNombre.value = "";
-  }
-*/
 } 
 
-
-
-function validarNombre(nombre) {
-    return /^[a-zA-Z]*$/.test(nombre);
-}
 
 function sortearAmigo() {
   let indice = Math.floor(Math.random() * nombres.length);
   amigoSecreto = nombres[indice];
-  alert("El amigo secreto es: " + amigoSecreto);
-  //amigo.textContent = amigoSecreto;
+  //borrar el contenido de la lista de nombres
+  listaNombres.innerHTML = "";
+  amigo.textContent = `El amigo secreto es: ${amigoSecreto}`;
 }
