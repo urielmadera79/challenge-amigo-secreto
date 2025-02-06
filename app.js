@@ -23,12 +23,20 @@ function agregarAmigo() {
     alert("Por favor, inserte un nombre.");
     return;
   }
+  // Verificar que el nombre no esté repetido
+  if (nombres.includes(nombre)) {
+    alert('El nombre ya ha sido ingresado.');
+    inputNombre.value = "";
+    return;
+  }
   nombres.push(nombre);
+  console.log(nombres.length);
+  
+  
   let item = document.createElement("li");
   item.textContent = nombre;
   listaNombres.appendChild(item);
   inputNombre.value = "";
-/*   console.log(nombres); */
 
 } 
 
@@ -37,6 +45,7 @@ function sortearAmigo() {
   let indice = Math.floor(Math.random() * nombres.length);
   amigoSecreto = nombres[indice];
   //borrar el contenido de la lista de nombres
-  listaNombres.innerHTML = "";
+  //listaNombres.innerHTML = "";
+  document.getElementById("listaAmigos").innerHTML = ""; 
   amigo.textContent = `El amigo secreto es: ${amigoSecreto}`;
 }
